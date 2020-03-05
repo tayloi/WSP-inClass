@@ -19,6 +19,7 @@ export const CardsInPlay = [
 ];
 
 export function Init(){
+    Players.push({Name: CurrentUser.name, Score: 0, isDealer: true});
     MyCards.push(CaptionsDeck[0]);
     MyCards.push(CaptionsDeck[1]);
 
