@@ -9,3 +9,5 @@ app
 
 //app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
     .get('/game/quoteCards', (req, res) => res.send(quoteCards) );
+
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
