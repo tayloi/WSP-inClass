@@ -3,4 +3,11 @@ const quoteCards = [
     "Come to Shabbat 200"
 ];
 
-module.exports = quoteCards; 
+function add(text) {
+    quoteCards.push(text);    
+};
+
+module.exports = {
+    list: quoteCards,
+    add: add
+};
