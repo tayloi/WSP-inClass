@@ -23,10 +23,12 @@
 
 <script>
   import {Players, PictureDeck, CurrentPicture, Init} from "../models/Game"; 
-  Init();
 
   export default {
     name: 'Home',
+    created(){
+      Init();
+    },
     data: () => ({
       Players, 
       PictureDeck, 
