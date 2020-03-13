@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Game from '../views/Game.vue';
 import Login from '../views/Login.vue';
-import {CurrentUser} from '../models/Game';
+import {CurrentUser} from '../models/Users';
 
 Vue.use(VueRouter)
 

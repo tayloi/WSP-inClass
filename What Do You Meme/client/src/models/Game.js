@@ -1,3 +1,5 @@
+import { CurrentUser } from "./Users";
+
 export const Players = [
     { Name: 'Bernie', Score: 0, isDealer: false }
 ];
