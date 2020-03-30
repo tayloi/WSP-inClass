@@ -27,7 +27,7 @@
   export default {
     name: 'Home',
     created(){
-      Init();
+      Game.Init();
     },
     data: () => ({
       Players, 
