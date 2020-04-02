@@ -1,6 +1,10 @@
+/* User Model
+ * Server side
+ */
+
 const Users = [
-    { Name: 'Moshe', Password: '2020', Email: 'plotkinm@newpaltz.edu'},
-    { Name: 'Bracha', Password: '5780', Email: 'chabadm@newpaltz.edu'}
+    { Name: 'Moshe', Password: '2020', Email: 'plotkinm@newpaltz.edu', userId: 0},
+    { Name: 'Bracha', Password: '5780', Email: 'chabadm@newpaltz.edu', userId: 1}
 ];
 
 module.exports = {
@@ -11,6 +15,6 @@ module.exports = {
         if(!user) throw Error('User not found');
         if(user.Password != password) throw Error('Wrong password');
     
-        return this.CurrentUser = user;
+        return user;
     }
 };
