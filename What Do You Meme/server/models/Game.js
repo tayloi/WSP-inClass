@@ -1,7 +1,14 @@
-const CurrentUser = require("./Users");
+/* GAME MODEL
+ * Server side
+ */
+const users = require("./Users");
+const CaptionsDeck = require('../models/quoteCards');
+
+const DEAL_AMOUNT = 3;
+let iCurrentCaption = 0; 
 
 const Players = [
-    { Name: 'Bernie', Score: 0, isDealer: false }
+    { Name: 'Bernie', Score: 0, isDealer: true }
 ];
 
 const MyCards = [];
@@ -15,6 +22,10 @@ let CurrentPicture = "";
 const CardsInPlay = [];
 
 function SubmitCaption(caption, playerId){
+    const player = Players[playerId];
+    if(player.isDealer){
+        throw Error('Dealer is not allowed to submit a caption.')
+    }
     CardsInPlay.push({
         Text: caption,
         PlayerId: playerId,
@@ -22,19 +33,18 @@ function SubmitCaption(caption, playerId){
     })
 }
 
-function Init(){
-    // This only made sense at the client
-    // TODO: Rethink how this works at the server
-    Players.push({Name: CurrentUser.Name, Score: 0, isDealer: true});
+function Join(){ //join the game
+    const user = users.Get(userId); //must find object to represent the user joining
+    Players.push({Name: CurrentUser.Name, Score: 0, isDealer: false});
     
-    MyCards.push(CaptionsDeck[0]);
-    MyCards.push(CaptionsDeck[1]);
+    const myCards = CaptionsDeck; [].list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);
+    iCurrentCaption += DEAL_AMOUNT;           //^index of last caption 
 
-    CurrentPicture = PictureDeck[0];
+    return { playerId: Players.length-1, myCards };
 }
 
 module.exports = {
     Players, PictureDeck, CurrentPicture, 
     CardsInPlay: CardsInPlay, 
-    SubmitCaption, Init
+    SubmitCaption, Join
 };

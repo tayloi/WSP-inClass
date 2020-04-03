@@ -1,3 +1,6 @@
+/* INDEX.JS
+ * Server side
+ */
 const express = require('express');
 const path = require('path');
 
@@ -21,6 +24,11 @@ app
         const homePath = path.join( __dirname , '/../client/dist/index.html');
         console.log(homePath);
         res.sendFile(homePath)
-    });
+    })
+    .use( (err, req, res, next) => {
+        console.error(error); //log (print) error in red
+        const errorCode = err.code || 500; //way to shortcircuit in JS
+        res.status(errorCode).send({ message: err.message });
+    } );
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

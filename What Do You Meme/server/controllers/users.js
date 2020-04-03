@@ -1,4 +1,4 @@
-/* User Controller
+/* USERS CONTROLLER
  * Server side
  */
 

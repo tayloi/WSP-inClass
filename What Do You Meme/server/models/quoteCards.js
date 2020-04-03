@@ -1,3 +1,6 @@
+/* QUOTE CARDS MODEL
+ * Server side
+ */
 const quoteCards = [
     "This class is awesome",
     "Come to Shabbat 200",
