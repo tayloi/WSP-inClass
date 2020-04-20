@@ -39,11 +39,12 @@ function SubmitCaption(caption, playerId){
     })
 }
 
-function Join(){ //join the game
+function Join(userId){ //join the game
     const user = users.Get(userId); //must find object to represent the user joining
-    Players.push({Name: CurrentUser.Name, Score: 0, isDealer: false});
+    console.log({user, userId});
+    Players.push({Name: user.Name, Score: 0, isDealer: false, userId});
     
-    const myCards = CaptionsDeck; [].list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);
+    const myCards = CaptionsDeck.list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);
     iCurrentCaption += DEAL_AMOUNT;           //^index of last caption 
 
     return { playerId: Players.length-1, myCards };
