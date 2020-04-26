@@ -42,9 +42,10 @@
             }
         },
         methods:{
-            login(){
+            async login(){
                 try {
-                    Login(this.email, this.password);
+                    //call await so rest of function doesn't get run until login throws error or returns
+                    await Login(this.email, this.password); 
                     this.$router.push('/game');
                 } catch (error) {
                     this.error = error;
