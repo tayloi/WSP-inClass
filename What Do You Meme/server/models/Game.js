@@ -48,8 +48,12 @@ function SubmitCaption(caption, playerId){
 
 //user can join the game and become player
 function Join(userId){
+    if(Players.some(x=> x.userId == userId)){
+        // The player already joined the game in another browser or computer
+        throw Error("You already joined this game in another browser or computer.");
+    }
+
     const user = users.Get(userId); //must find object to represent the user joining
-    //console.log({user, userId});
     Players.push({Name: user.Name, Score: 0, isDealer: false, userId});
     
     const myCards = CaptionsDeck.list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);

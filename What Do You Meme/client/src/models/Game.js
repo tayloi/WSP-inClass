@@ -19,7 +19,8 @@ export default{
             .then(x=> { 
                 this.MyCards = x.myCards;
                 console.log(x);
-            });
+            })
+            .catch(err=> console.warn(err));
     },
     Run(){
         myFetch('/game') //returns a Promise
