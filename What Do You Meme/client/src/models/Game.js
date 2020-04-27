@@ -10,10 +10,14 @@ let interval; //var. holding ref. to timer that will constantly ping server to f
 export default{
     State = {},
     MyCards = [],
-    Init(){ //Join
+    Init(){ //Join or come back to game
+        if(this.MyCards.length){
+            // The player already joined the game. They just temporarily went to a different view.
+            return;
+        }
         myFetch('/game/join', {})
             .then(x=> { 
-                this.MyCards = x;
+                this.MyCards = x.myCards;
                 console.log(x);
             });
     },
