@@ -14,7 +14,13 @@
           <ul class="panel">
             <li class="panel-heading">Players</li>
             <li v-for="player in Game.State.Players" :key="player.Name" class="panel-block">
-              {{player.Name}} {{player.Score}}
+              <span class="panel-icon"> <!--aligns icons vertically-->
+                <i class="fas fa-user-graduate" aria-hidden="true"></i> <!--font awesome-->
+              </span>
+              <span class="flex-name">
+                {{player.Name}} 
+              </span>
+              <span class="tag is-rounded">{{player.Score}}</span>
             </li>
           </ul>
         </div>
@@ -69,5 +75,8 @@
 <style>
   img.card-image{
     width: 100%
+  }
+  .flex-name {
+    flex-grow: 1; /*moves score icon to right*/
   }
 </style>
