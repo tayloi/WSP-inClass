@@ -8,11 +8,12 @@
     </h1>
     
     <!--Players and current picture-->
-    <div class="columns">
-      <div class="card column is-one-third">
-        <div class="card-content"> 
-          <ul>
-            <li v-for="player in Game.State.Players" :key="player.Name">
+    <div class="columns"> <!--acting as margin outside panel-->
+      <div class="column is-one-third">
+        <div class=""> 
+          <ul class="panel">
+            <li class="panel-heading">Players</li>
+            <li v-for="player in Game.State.Players" :key="player.Name" class="panel-block">
               {{player.Name}} {{player.Score}}
             </li>
           </ul>
@@ -23,19 +24,21 @@
     
     <!--My cards and cards in play-->
     <div class="columns">
-          <div class="card column is-one-third">
-            <div class="card-content">
-              <ul>
-                <li v-for="card in Game.MyCards" :key="card"> <!--stored at client side-->
+          <div class="column is-one-third">
+            <div class="">
+              <ul class="panel">
+                <li class="panel-heading">My Cards</li>
+                <li v-for="card in Game.MyCards" :key="card" class="panel-block"> <!--stored at client side-->
                   {{card}} 
                 </li>
               </ul>
             </div>
           </div>
-          <div class="card column">
-            <div class="card-content">
-              <ul>
-                <li v-for="card in Game.State.CardsInPlay" :key="card.Text"> <!--what's updated from server is inside State-->
+          <div class="column">
+            <div class="">
+              <ul class="panel">
+                <li class="panel-heading">Cards in Play</li>
+                <li v-for="card in Game.State.CardsInPlay" :key="card.Text" class="panel-block"> <!--what's updated from server is inside State-->
                   {{card.Text}}, {{card.PlayerId}}, {{card.IsChosen}} <!--what gets displayed-->
                 </li>
               </ul>

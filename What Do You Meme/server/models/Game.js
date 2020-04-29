@@ -7,9 +7,7 @@ const CaptionsDeck = require('../models/quoteCards');
 const DEAL_AMOUNT = 3;
 let iCurrentCaption = 0; 
 
-const Players = [
-    { Name: 'Bernie', Score: 0, isDealer: true, userId: 2 }
-];
+const Players = [];
 
 const MyCards = [];
 
