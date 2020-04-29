@@ -28,8 +28,8 @@ let CurrentPicture = "";
 let iCurrentPicture = 0;
 
 function FlipPicture(){
-    //console.log(currentPicture);
-    return module.exports.currentPicture = PictureDeck[iCurrentPicture++];
+    console.log(CurrentPicture);
+    return module.exports.CurrentPicture = PictureDeck[iCurrentPicture++];
 }
 
 const CardsInPlay = [];

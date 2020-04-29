@@ -8,10 +8,10 @@ import myFetch from "./myFetch";
 let interval; //var. holding ref. to timer that will constantly ping server to find changes
 
 export default{
-    State = {},
-    MyCards = [],
+    State: {},
+    MyCards: [],
     Init(){ //Join or come back to game
-        if(this.MyCards.length){
+        if(this.MyCards.length){ //having cards means already joined game
             // The player already joined the game. They just temporarily went to a different view.
             return;
         }

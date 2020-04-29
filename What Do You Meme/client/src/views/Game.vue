@@ -20,6 +20,25 @@
                 </ul>
             </div>
             <img :src="Game.State.CurrentPicture" class="card-image"/>
+            
+          <div class="card">
+            <div class="card-content">
+              <ul>
+                <li v-for="card in Game.MyCards" :key="card"> <!--stored at client side-->
+                  {{card}} 
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <ul>
+                <li v-for="card in Game.State.CardsInPlay" :key="card.Text"> <!--what's updated from server is inside State-->
+                  {{card.Text}}, {{card.PlayerId}}, {{card.IsChosen}} <!--what gets displayed-->
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
     </div>
 </template>
