@@ -29,13 +29,20 @@
              <button class="button is-primary" @click.prevent="google_login" >
                 Login with Google
             </button>
+            <br/><br/>
+            <button class="button is-primary" @click.prevent="facebook_login" >
+                Login with Facebook
+            </button>
         </div>
+
+        <img :src="profile_picture" v-if="profile_picture"/>
   </form>
 </template>
 
 <script>
     import {Login} from '../models/Users';
     const GOOGLE_CLIENT_ID = "70386515531-12spist145bonkfuegrhce7h3433mkbo.apps.googleusercontent.com";
+    const FACEBOOK_CLIENT_ID = "194204998202015";
     let auth2 = null;
 
     export default { //vue object
@@ -43,7 +50,8 @@
             return {
                 email: '',
                 password: '',
-                error: ''
+                error: '',
+                profile_picture: null
             }
         },
         created(){
@@ -61,6 +69,29 @@
                     })
                 })
             }
+            //similar to onload except it's global fxn that gets called by the global script
+            window.fbAsyncInit = function() { 
+                FB.init({
+                    appId      : FACEBOOK_CLIENT_ID,
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v3.0'
+                });
+                
+                //FB.AppEvents.logPageView();   
+                /*
+                FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                });*/
+            };
+            //same as first 3 lines of Google code above
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js"; //creates global variable when loaded
+                fjs.parentNode.insertBefore(js, fjs); //same as document.head.appendChild
+            }(document, 'script', 'facebook-jssdk')); 
         },
         methods:{
             async login(){
@@ -84,8 +115,22 @@
                     console.log('Family Name: ' + profile.getFamilyName()); //Same as qU
                     console.log("Image URL: " + profile.getImageUrl());
                     console.log("Email: " + profile.getEmail());
+
+                    this.profile_picture = profile.getImageUrl();
                 } )
                 .catch(error => this.error = error)
+            },
+            facebook_login(){
+                FB.login(response => {
+                        console.log(response);
+                        //if login successful
+                        FB.api('/me?fields=email,name,picture', function(response) { //FB.api is like myFetch function where don't have to pass whole URL just end of it
+                            console.log(response);
+                            this.profile_picture = response.picture.data.url;
+                        });
+                    }, 
+                    {scope: 'email'}
+                );
             }
         }
     }
